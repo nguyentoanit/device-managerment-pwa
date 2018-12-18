@@ -1,12 +1,35 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+      <!-- Brand -->
+      <router-link class="navbar-brand" :to="{'name': 'home'}">Home</router-link>
+      <!-- Toggler/collapsibe Button -->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <!-- Navbar links -->
+      <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="navbar-nav">
+          <li class="nav-item" v-for="(route, index) in routes" :key="index">
+            <router-link v-if="route.visible" class="nav-link" :to="route.name">{{route.title}}</router-link>
+          </li>
+        </ul>
+      </div> 
+    </nav>
     <router-view/>
   </div>
 </template>
+
+<script>
+export default {
+  name: 'app',
+  data () {
+    return {
+      routes: this.$router.options.routes
+    }
+  }
+}
+</script>
 
 <style>
 #app {
@@ -15,17 +38,5 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-}
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
 }
 </style>
