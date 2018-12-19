@@ -1,5 +1,5 @@
 <template>
-  <div class="hello">
+  <div>
     <qrcode-stream @decode="onDecode"></qrcode-stream>
     <br>
     <label>Choose a QR file:</label>

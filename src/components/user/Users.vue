@@ -1,22 +1,26 @@
 <template>
-  <div class="hello">
+  <div>
     <h1>Users</h1>
-    <table class="table">
+    <table class="table table-bordered table-striped">
       <thead>
         <tr>
           <th scope="col">#</th>
-          <th scope="col">First Name</th>
-          <th scope="col">Last Name</th>
+          <th scope="col">Fullname</th>
           <th scope="col">Avatar</th>
+          <th scope="col">Action</th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="user in users" :key="user.id">
           <th scope="row">{{ user.id }}</th>
-          <td>{{ user.first_name }}</td>
-          <td>{{ user.last_name }}</td>
+          <td>{{ user.first_name }} {{ user.last_name }}</td>
           <td>
             <img :src="user.avatar">
+          </td>
+          <td>
+            <router-link :to="{ name: 'user', params: { userID: user.id }}">
+              <i class="fas fa-edit"></i>
+            </router-link>
           </td>
         </tr>
       </tbody>

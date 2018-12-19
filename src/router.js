@@ -19,6 +19,27 @@ export default new Router({
       title: 'Users',
       visible: true,
       component: () => import('./components/user/Users')
+    },
+    {
+      path: '/user/:userID',
+      name: 'user',
+      title: 'user',
+      visible: false,
+      component: () => import('./components/user/User')
+    },
+    {
+      path: '/devices',
+      name: 'devices',
+      title: 'Devices',
+      visible: true,
+      component: () => import('./components/device/Devices')
+    },
+    {
+      path: '/device/:deviceID',
+      name: 'device',
+      title: 'Device',
+      visible: false,
+      component: () => import('./components/device/Device')
     }
   ]
 });
