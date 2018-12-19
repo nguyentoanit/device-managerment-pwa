@@ -11,7 +11,7 @@
       <div class="collapse navbar-collapse" id="collapsibleNavbar">
         <ul class="navbar-nav">
           <li class="nav-item" v-for="(route, index) in routes" :key="index">
-            <router-link v-if="route.visible" class="nav-link" :to="route.name">{{route.title}}</router-link>
+            <router-link v-if="route.visible" class="nav-link" :to="{ name: route.name}">{{route.title}}</router-link>
           </li>
         </ul>
       </div> 
@@ -34,11 +34,4 @@ export default {
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
 </style>
