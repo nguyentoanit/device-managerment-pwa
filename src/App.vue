@@ -11,10 +11,11 @@
       <div class="collapse navbar-collapse" id="collapsibleNavbar">
         <ul class="navbar-nav">
           <li class="nav-item" v-for="(route, index) in routes" :key="index">
-            <router-link v-if="route.visible" class="nav-link" :to="{ name: route.name}">{{route.title}}</router-link>
+            <router-link v-if="route.visible" data-toggle="collapse" data-target="#collapsibleNavbar" class="nav-link" :to="{ name: route.name}">{{route.title}}
+            </router-link>
           </li>
         </ul>
-      </div> 
+      </div>
     </nav>
     <div class="container">
       <router-view/>
@@ -23,14 +24,14 @@
 </template>
 
 <script>
-export default {
-  name: 'app',
-  data () {
-    return {
-      routes: this.$router.options.routes
+  export default {
+    name: 'app',
+    data() {
+      return {
+        routes: this.$router.options.routes
+      }
     }
   }
-}
 </script>
 
 <style>
