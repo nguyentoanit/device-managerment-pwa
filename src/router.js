@@ -14,18 +14,18 @@ export default new Router({
       component: Home
     },
     {
-      path: '/users',
-      name: 'users',
-      title: 'Users',
+      path: '/employees',
+      name: 'employees',
+      title: 'Employees',
       visible: true,
-      component: () => import('./components/user/Users')
+      component: () => import('./components/employee/Employees')
     },
     {
       path: '/user/:userID',
       name: 'user',
       title: 'user',
       visible: false,
-      component: () => import('./components/user/User')
+      component: () => import('./components/employee/Employee')
     },
     {
       path: '/equipments',

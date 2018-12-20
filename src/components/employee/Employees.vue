@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Users</h1>
+    <h1>Employees</h1>
     <b-row>
       <b-col md="6" class="my-1">
         <b-form-group horizontal label="Search" class="mb-0">
@@ -39,10 +39,10 @@
 </template>
 
 <script>
-  import userAPI from '../../api/user'
+  import employeeAPI from '../../api/employee'
 
   export default {
-    name: 'Users',
+    name: 'Employees',
     data() {
       return {
         sortBy: 'age',
@@ -68,8 +68,8 @@
       }
     },
     created() {
-      userAPI
-        .getUsers()
+      employeeAPI
+        .getEmployees()
         .then(response => {
           this.items = response.data.data
           this.totalRows = this.items.length

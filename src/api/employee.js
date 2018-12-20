@@ -2,10 +2,10 @@ import axios from 'axios'
 import endpoints from './endpoints'
 
 export default {
-  getUsers() {
+  getEmployees() {
     return axios.get(endpoints.localhost + 'employees')
   },
-  getUser(userID) {
+  getEmployee(userID) {
     return axios.get(endpoints.reqres + 'employee/' + userID)
   }
 }

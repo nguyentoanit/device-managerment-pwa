@@ -35,7 +35,7 @@
 </template>
 
 <script>
-  import userAPI from '../../api/user'
+  import userAPI from '../../api/employee'
   import {MultiSelect} from 'vue-search-select'
 
   export default {
