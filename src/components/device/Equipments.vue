@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Devices</h1>
+    <h1>Equipments</h1>
     <b-row>
       <b-col md="6" class="my-1">
         <b-form-group horizontal label="Search" class="mb-0">
