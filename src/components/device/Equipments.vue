@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Users</h1>
+    <h1>Devices</h1>
     <b-row>
       <b-col md="6" class="my-1">
         <b-form-group horizontal label="Search" class="mb-0">
@@ -24,8 +24,8 @@
       <template slot="index" slot-scope="data">
         {{data.index + 1}}
       </template>
-      <template slot="action" slot-scope="data">
-        <router-link :to="{ name: 'user', params: { userID: data.index + 1 }}">
+      <template slot="action" slot-scope="row">
+        <router-link :to="{ name: 'device', params: { deviceID: row.item.id }}">
           <i class="fas fa-edit"></i>
         </router-link>
       </template>
@@ -35,17 +35,17 @@
         <b-pagination :total-rows="totalRows" :per-page="perPage" v-model="currentPage" class="my-0"/>
       </b-col>
     </b-row>
+
   </div>
 </template>
-
 <script>
-  import userAPI from '../../api/user'
+  import equipmentAPI from '../../api/equipment'
 
   export default {
-    name: 'Users',
+    name: 'Device',
     data() {
       return {
-        sortBy: 'age',
+        sortBy: 'name',
         sortDesc: false,
         totalRows: 0,
         currentPage: 1,
@@ -53,8 +53,11 @@
         filter: null,
         fields: [
           'index',
+          {key: 'id', sortable: true},
           {key: 'name', sortable: true},
+          // {key: 'imei', sortable: true},
           {key: 'status', sortable: true},
+          {key: 'employee_id', sortable: false},
           {key: 'action', sortable: false}
         ],
         items: []
@@ -68,15 +71,14 @@
       }
     },
     created() {
-      userAPI
-        .getUsers()
+      equipmentAPI.getEquipments()
         .then(response => {
           this.items = response.data.data
           this.totalRows = this.items.length
-          localStorage.employees = JSON.stringify(response.data.data)
+          localStorage.equipments = JSON.stringify(response.data.data)
         })
         .catch(() => {
-          this.employees = JSON.parse(localStorage.employees)
+          this.equipments = JSON.parse(localStorage.equipments)
         })
     }
   }

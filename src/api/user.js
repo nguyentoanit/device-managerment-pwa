@@ -3,9 +3,9 @@ import endpoints from './endpoints'
 
 export default {
   getUsers() {
-    return axios.get(endpoints.reqres + 'users')
+    return axios.get(endpoints.localhost + 'employees')
   },
   getUser(userID) {
-    return axios.get(endpoints.reqres + 'users/' + userID)
+    return axios.get(endpoints.reqres + 'employee/' + userID)
   }
 }

@@ -28,11 +28,11 @@ export default new Router({
       component: () => import('./components/user/User')
     },
     {
-      path: '/devices',
-      name: 'devices',
-      title: 'Devices',
+      path: '/equipments',
+      name: 'equipments',
+      title: 'Equipments',
       visible: true,
-      component: () => import('./components/device/Devices')
+      component: () => import('./components/device/Equipments')
     },
     {
       path: '/device/:deviceID',
