@@ -2,55 +2,44 @@
   <div>
     <form>
       <div class="form-group">
-        <label for="user-id">User ID</label>
-        <input type="text" class="form-control" id="user-id" disabled v-model="$route.params.userID">
+        <label for="employee-id">Employee ID</label>
+        <input type="text" class="form-control" id="employee-id" disabled v-model="$route.params.employeeID">
       </div>
       <div class="form-group">
-        <label for="first-name">First Name</label>
-        <input type="text" class="form-control" id="first-name" placeholder="First Name" v-model="user.first_name">
-      </div>
-      <div class="form-group">
-        <label for="last-name">Last Name</label>
-        <input type="text" class="form-control" id="last-name" placeholder="Last Name" v-model="user.last_name">
-      </div>
-      <div class="form-group">
-        <img :src="user.avatar" alt="No Avatar" width="100px"/>
-        <br>
-        <label for="avatar">Avatar</label>
-        <input type="file" class="form-control" id="avatar">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name" placeholder="Name" v-model="employee.name" :disabled="isUpdatedMode">
       </div>
       <div class="form-group">
         <label for="devices">Devices</label>
 
         <multi-select :options="options"
                       :selected-options="items"
+                      :isDisabled="isUpdatedMode"
                       placeholder="select item"
                       @select="onSelect">
         </multi-select>
 
       </div>
-      <input type="button" class="btn btn-primary" value="Submit">
+      <input :disabled="isUpdatedMode" type="button" class="btn btn-primary" value="Submit">
     </form>
   </div>
 </template>
 
 <script>
-  import userAPI from '../../api/employee'
+  import employeeAPI from '../../api/employee'
+  import equipmentAPI from '../../api/equipment'
+
   import {MultiSelect} from 'vue-search-select'
+  import _ from 'lodash'
 
   export default {
-    name: "User",
+    name: "Employee",
     data() {
       return {
-        user: {},
+        isUpdatedMode: this.$route.params.mode,
+        employee: {},
         items: [],
-        options: [
-          {value: '1', text: 'aa' + ' - ' + '1'},
-          {value: '2', text: 'ab' + ' - ' + '2'},
-          {value: '3', text: 'bc' + ' - ' + '3'},
-          {value: '4', text: 'cd' + ' - ' + '4'},
-          {value: '5', text: 'de' + ' - ' + '5'}
-        ]
+        options: []
       }
     },
     methods: {
@@ -59,14 +48,27 @@
       },
     },
     mounted() {
-      userAPI
-        .getUser(this.$route.params.userID)
+      employeeAPI.getEmployee(this.$route.params.employeeID)
         .then(response => {
-          this.user = response.data.data
-          localStorage.users = JSON.stringify(response.data.data)
+          this.employee = response.data.data
+          this.items = _.map(response.data.data.assigned_equipments, function (item) {
+            return {value: item.id, text: item.id + ' - ' + item.name}
+
+          })
+          localStorage.employees = JSON.stringify(response.data.data)
         })
         .catch(() => {
-          this.users = JSON.parse(localStorage.users)
+          this.employees = JSON.parse(localStorage.employees)
+        })
+
+      equipmentAPI.getEquipments()
+        .then(response => {
+          this.options = _.map(response.data.data, function (item) {
+            return {value: item.id, text: item.id + ' - ' + item.name}
+          })
+        })
+        .catch(() => {
+          this.equipments = JSON.parse(localStorage.equipments)
         })
     },
     components: {

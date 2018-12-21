@@ -25,7 +25,7 @@
         {{data.index + 1}}
       </template>
       <template slot="action" slot-scope="row">
-        <router-link :to="{ name: 'device', params: { deviceID: row.item.id }}">
+        <router-link :to="{ name: 'equipment', params: { equipmentID: row.item.id, mode: 1 }}">
           <i class="fas fa-edit"></i>
         </router-link>
       </template>
@@ -57,7 +57,7 @@
           {key: 'name', sortable: true},
           // {key: 'imei', sortable: true},
           {key: 'status', sortable: true},
-          {key: 'employee_id', sortable: false},
+          {key: 'assigner_id', sortable: false},
           {key: 'action', sortable: false}
         ],
         items: []

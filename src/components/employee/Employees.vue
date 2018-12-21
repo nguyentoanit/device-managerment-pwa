@@ -24,8 +24,8 @@
       <template slot="index" slot-scope="data">
         {{data.index + 1}}
       </template>
-      <template slot="action" slot-scope="data">
-        <router-link :to="{ name: 'user', params: { userID: data.index + 1 }}">
+      <template slot="action" slot-scope="row">
+        <router-link :to="{ name: 'employee', params: { employeeID: row.item.id, mode: 1 }}">
           <i class="fas fa-edit"></i>
         </router-link>
       </template>
@@ -53,6 +53,7 @@
         filter: null,
         fields: [
           'index',
+          {key: 'id', sortable: true},
           {key: 'name', sortable: true},
           {key: 'status', sortable: true},
           {key: 'action', sortable: false}

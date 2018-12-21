@@ -5,7 +5,7 @@ export default {
   getEmployees() {
     return axios.get(endpoints.localhost + 'employees')
   },
-  getEmployee(userID) {
-    return axios.get(endpoints.reqres + 'employee/' + userID)
+  getEmployee(employeeID) {
+    return axios.get(endpoints.localhost + 'employee/' + employeeID)
   }
 }

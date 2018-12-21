@@ -21,9 +21,9 @@ export default new Router({
       component: () => import('./components/employee/Employees')
     },
     {
-      path: '/user/:userID',
-      name: 'user',
-      title: 'user',
+      path: '/employee/:employeeID/:mode',
+      name: 'employee',
+      title: 'employee',
       visible: false,
       component: () => import('./components/employee/Employee')
     },
@@ -32,14 +32,14 @@ export default new Router({
       name: 'equipments',
       title: 'Equipments',
       visible: true,
-      component: () => import('./components/device/Equipments')
+      component: () => import('./components/equipment/Equipments')
     },
     {
-      path: '/device/:deviceID',
-      name: 'device',
+      path: '/equipment/:equipmentID/:mode',
+      name: 'equipment',
       title: 'Device',
       visible: false,
-      component: () => import('./components/device/Device')
+      component: () => import('./components/equipment/Equipment')
     }
   ]
 });
